@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF282E3D),
       body: Stack(
         children: [
           Align(
@@ -40,16 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
               "Test your\nreaction speed",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
+                fontSize: 38,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
               ),
             ),
           ),
           Align(
             alignment: Alignment.center,
             child: ColoredBox(
-              color: Colors.black12,
+              color: const Color(0xFF6D6D6D),
               child: SizedBox(
                 height: 160,
                 width: 300,
@@ -58,9 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     millisecondsText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               }),
               child: ColoredBox(
-                color: Colors.black12,
+                color: _getButtonColor(),
                 child: SizedBox(
                   height: 200,
                   width: 200,
@@ -94,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       _getButtonText(),
                       style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
+                        fontSize: 38,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -117,6 +118,17 @@ class _MyHomePageState extends State<MyHomePage> {
         return "WAIT";
       case GameState.canBeStopped:
         return "STOP";
+    }
+  }
+
+  Color _getButtonColor() {
+    switch (gameState) {
+      case GameState.readyToStart:
+        return const Color(0xFF40CA88);
+      case GameState.waiting:
+        return const Color(0xFFE0982D);
+      case GameState.canBeStopped:
+        return const Color(0xFFE02D47);
     }
   }
 
@@ -144,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
     stoppableTimer?.cancel();
     super.dispose();
   }
+
 }
 
 enum GameState { readyToStart, waiting, canBeStopped }
